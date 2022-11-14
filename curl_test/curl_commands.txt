@@ -1,0 +1,39 @@
+//NOTE: Please update the ID of the student to a student that exists within your database
+//NOTE: when using the JSON files, it is important that the cmd be from within the curl_test folder
+
+
+//get no paramaters
+curl http://localhost:8080/student/
+
+//get query two parameters
+curl "http://localhost:8080/student/?city=tlv&toar=ma"
+
+//post add student
+curl -d "id=123456789&name=Test1&toar=ba&city=jlm" http://localhost:8080/student/add
+
+//post add student with errors
+curl -d "id=123456 89&toar=la&city=jlm" http://localhost:8080/student/add
+
+//post add student json
+curl -H "Content-Type: application/json" -d @stu.json http://localhost:8080/student/add
+
+//post update student
+curl -d "name=test&city=&toar=ma" http://localhost:8080/student/update/633981d594d8482d3518a5d9
+
+//post update student with error
+curl -d "city=test&name=" http://localhost:8080/student/update/6328cf466a5e82fb12817cd2
+
+//post update student json
+curl -H "Content-Type: application/json" -d @update.json  http://localhost:8080/student/update/633981d594d8482d3518a5d9
+
+//post add course
+curl -d "cid=testd&grade=85" http://localhost:8080/student/update/6328cf466a5e82fb12817cd2/addcourse
+
+//post add course json
+curl -H "Content-Type: application/json" -d @course.json  http://localhost:8080/student/update/632424ba3822bc6e77aa8dcf/addcourse
+
+//post delete
+curl http://localhost:8080/student/delete/632424ba3822bc6e77aa8dcf -X POST
+
+//post delete all
+curl http://localhost:8080/student/deleteall -X POST

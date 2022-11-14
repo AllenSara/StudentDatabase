@@ -1,0 +1,48 @@
+doctype
+html(dir="ltr" lang='en')
+    head
+        title Add Student
+        meta(charset='utf-8')
+        style
+            include ../public/styles_global.css
+            include ../public/styles_add.css
+    body
+        h1 The Academy &#127891;
+        button
+            a(href= base_url) Go to students page
+        br
+        br
+        form(method="post")
+            fieldset(id='add')
+                legend Add a Student
+                br
+                label(for="id_stu")
+                    b ID: 
+                input(required type="text" id="id_stu" name="id" value=id minlength="9" maxlength="9" pattern="[^\\s]*" placeholder="enter the ID here...") 
+                br
+                br
+                label(for="name_stu")
+                    b Name: 
+                input(required type="text" id="name_stu" name="name" value=name minlength="1" placeholder="enter the name here...")
+                br
+                br
+                label(for="city_stu")
+                    b City: 
+                input(type="text" id="city_stu" name="city" value=city minlength="1" placeholder="enter the city here...")
+                br
+                br
+                b Toar:  
+                input(type="radio" id="ba_toar" name="toar" value="ba" checked=(toar == "ba" ? true : false) required) 
+                label(for="ba_toar") BA 
+                input(type="radio" id="ma_toar" name="toar" value="ma" checked=(toar == "ma" ? true : false)) 
+                label(for="ma_toar") MA 
+                input(type="radio" id="phd_toar" name="toar" value="phd" checked=(toar == "phd" ? true : false))
+                label(for="phd_toar") PHD
+                br
+                br
+                input(type="submit" value="Add student" )
+                br
+                if id&&name&&toar != undefined 
+                    p(class="green") Successfully added a new student!
+
+

@@ -1,0 +1,65 @@
+doctype
+html(dir="ltr" lang='en')
+    head
+        title Students
+        meta(charset='utf-8')
+        style
+            include ../public/styles_global.css
+            include ../public/styles_get.css
+    body
+        h1 The Academy &#127891;
+        button
+            a(href= `${base_url}/add`) Add Students
+        br
+        br
+        if empty
+            p(class="red") Sorry, there are currently no students in the database.
+        else
+            form
+                fieldset(id='filter')
+                    legend Filter Students
+                    b Toar:   
+                    input(type="radio" name="toar" value="all" checked=(toar == "all" ? true:false))
+                    label(for="all") All 
+                    input(type="radio" name="toar" value="ba" checked=(toar == "ba" ? true:false))
+                    label(for="ba") BA 
+                    input(type="radio" name="toar" value="ma" checked=(toar == "ma" ? true:false))
+                    label(for="ma") MA 
+                    input(type="radio" name="toar" value="phd" checked=(toar == "phd" ? true:false))
+                    label(for="phd") PHD
+                    br
+                    br
+                    label(for="city") 
+                        b City: 
+                    input(type="text" name="city" value=city minlength="1" placeholder="enter the city here...") 
+                    br
+                    br
+                    label(for="avg") 
+                        b Minimum Average Grade: 
+                    input(type="number" name="avg" value=avg min=0 max=100 step="0.01" placeholder="0.00")
+                    br
+                    br
+                    input(type="submit" value="Filter")
+                    br
+            br
+            if stu.length > 0
+                table(border='1px')
+                    thead 
+                        tr
+                            th ID
+                            th Name
+                            th Delete
+                            th Update
+                    tbody 
+                        each s in stu                                
+                            tr
+                                td #{s.id}
+                                td #{s.name}
+                                td 
+                                    form(method="post" action= `${base_url}/delete/${s._id}` onsubmit=`return confirm('Are you sure you would like to delete the student ${s.name}?')`)
+                                        button(type="submit") Delete    
+                                td
+                                    button
+                                        a(href=`${base_url}/update/${s._id}`) Update
+            else
+                p(class="red") Sorry, none of the students match the current filter.

@@ -1,0 +1,4 @@
+del_all
+add_student {"id":"111111888","toar":"ba","city":"RG","name":"Yossi"} saveas st1
+add_student {"id":"111111999","toar":"ba","city":"TLV","name":"Anat"} saveas st2
+get_students {"toar":"ba"} expected_num_documents 2

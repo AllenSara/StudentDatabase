@@ -1,0 +1,13 @@
+//tests all commands
+del_all
+add_student {"id":"111111888","toar":"ma","city":"RG","name":"Yossi"} saveas st1
+//token for saveas_name is missing on purpose, student will not be saved in the internal storage and the console will notify the user
+add_student {"id":"111111999","toar":"ba","city":"RG","name":"Anat"} saveas
+add_student {"id":"333333333","toar":"ma","city":"RG","name":"Sara"} saveas st2
+//this will only partially match as st3 does not exist, the console will notify the user
+get_students {"toar":"ma"} expected_saveas_names ["st1","st2","st3"]
+get_students {"city":"RG"} expected_num_documents 3
+get_students {}
+update_student st1 {"toar":"phd"}
+add_course st1 {"cid":"35000","grade":85}
+del_student st1

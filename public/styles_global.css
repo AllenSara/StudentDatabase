@@ -1,0 +1,37 @@
+html{
+    color: rgba(34, 60, 116, 0.89);
+    font-family: sans-serif;
+    background-color:aliceblue;
+    text-align: center;
+}
+
+legend {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+th, td{
+    border: 1px solid rgba(34, 60, 116, 0.89);
+    text-align: center;
+    margin: auto;
+    padding: 5px;
+}
+
+table{
+    border: none;
+    margin: auto;
+}
+
+th{
+    background-color:rgba(167, 188, 235, 0.89);
+}
+
+.red{
+    color:rgba(218, 69, 69, 0.862);
+    font-weight: bold;
+}
+
+.green {
+    color:rgba(34, 116, 79, 0.89);
+    font-weight: bold;
+}

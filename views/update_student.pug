@@ -1,0 +1,71 @@
+doctype
+html(dir="ltr" lang='en')
+    head
+        title Update Student
+        meta(charset='utf-8')
+        style
+            include ../public/styles_global.css
+            include  ../public/styles_update.css
+    body
+        h1 The Academy &#127891;
+        button   
+            a(href= base_url) Go to students page
+        br
+        br
+        form(id="update" method="post" action=`${base_url}/update/${stu._id}`)
+            fieldset
+                legend Update Student Information
+                label(for="id") 
+                    b Id: 
+                input(name="id" type="text" value=stu.id disabled) 
+                br
+                br
+                label(for="name") 
+                    b Name: 
+                input(name="name" type="text" value=stu.name required placeholder="enter the name here...")
+                br
+                br
+                label(for="city") 
+                    b City: 
+                input(name="city" type="text" value=stu.city placeholder="enter the city here...")
+                br
+                br
+                b Toar:  
+                input(type="radio" id="ba_toar" name="toar" value="ba" checked=(stu.toar == "ba" ? true : false) required) 
+                label(for="ba_toar") BA 
+                input(type="radio" id="ma_toar" name="toar" value="ma" checked=(stu.toar == "ma" ? true : false)) 
+                label(for="ma_toar") MA 
+                input(type="radio" id="phd_toar" name="toar" value="phd" checked=(stu.toar == "phd" ? true : false))
+                label(for="phd_toar") PHD
+                br
+                br
+                input(type="submit" value="Update Student")
+        br
+        form(id="course" method="post" action=`${base_url}/update/${stu._id}/addcourse`)
+            fieldset 
+                legend Add a Course
+                label(for="course_id") 
+                    b Course Id: 
+                input(name="cid" type="text" required minlength="5" maxlength="5" pattern="[^\\s]*" placeholder="enter the course id here...") 
+                br
+                br
+                label(for="grade") 
+                    b Grade: 
+                input(name="grade" type="number" required min=0 max=100 step="0.01" placeholder="0.00") 
+                br
+                br
+                input(type="submit" value="Add Course")
+                br
+        br
+        div(id="course_list")
+            if stu.courses.length > 0
+                table(border='1px')
+                    tr
+                        th Course
+                        th Grade
+                    each course in stu.courses
+                        tr
+                            td #{course.cid}
+                            td #{course.grade}
+            else
+                p(class="red") This student does not currently have any courses on file.

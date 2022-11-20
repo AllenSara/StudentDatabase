@@ -6,16 +6,15 @@ const StudentModel = require('../models/student');
 router.get('/', async (req, res) => {
     try {
         const result = await StudentModel.find().exec();
-        if (result.length === 0) {
-            const empty = true;
+        if (global.runmode == "JSON" && (result.length === 0 || !req.query)){
+            res.json(result);
+        }
+        else if (result.length === 0) {
+            const empty = true
             res.render('get_students', { empty, base_url: req.baseUrl });
         }
         else if (!req.query) {
-            if (global.runmode == "HTML") {
-                res.render('get_students', { stu: result, base_url: req.baseUrl });
-            } else {
-                res.json(result);
-            }
+            res.render('get_students', { stu: result, base_url: req.baseUrl });
         }
         else {
             const { toar, city, avg } = req.query;
